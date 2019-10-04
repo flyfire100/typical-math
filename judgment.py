@@ -2,13 +2,6 @@ from abt import *
 from pattern import *
 
 
-class JudgmentForm(Node):
-    judgmentSort = PrimitiveSort("judgment")
-
-    def __init__(self, name, args, repr=None):
-        super().__init__(name, self.judgmentSort, args, repr)
-
-
 class InferenceRule:
     def __init__(self, name, premises, conclusion, condition=None):
         # condition is additional conditions that may be present.
@@ -27,7 +20,8 @@ class InferenceRule:
         return self.name
 
     def with_fresh_metavariables(self):
-        fresh_juice_raw = [(v, MetaVariable((v.ident,), v.sort, v.closure, "f" + v.name)) for v in self.variables]
+        fresh_juice_raw = [(v, MetaVariable((v.ident,), v.closure, "f" + v.name)) for v in self.variables]
+        # Used tuple around the identifier so that idents will not clash
         fresh_juice = {a: b for a,b in fresh_juice_raw}
         fresh_juice_inverted = {b: a for a,b in fresh_juice_raw}
         return InferenceRule(self.name, tuple(subs_metavariables(p, fresh_juice) for p in self.premises),
