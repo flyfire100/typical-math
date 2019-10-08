@@ -25,7 +25,7 @@ class Node(ABT):
         super().__init__()
         self.name = name
         self.args = args
-        self._repr = f"{name}({', '.join(map(str, self.args))})"
+        self._repr = f"{name}({', '.join(map(str, self.args))})" if len(self.args) >= 1 else name
         self._hash = hash(self.name) ^ hash(self.args)
 
     def __repr__(self):
