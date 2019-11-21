@@ -42,3 +42,9 @@ fun implementation of the [Iota and Jot language](https://en.wikipedia.org/wiki/
 
 The `/Misc/unification` folder contains a demonstrative system
 of a unification algorithm.
+
+
+
+https://github.com/Trebor-Huang/typical-math/tree/lambda-calculus
+
+
